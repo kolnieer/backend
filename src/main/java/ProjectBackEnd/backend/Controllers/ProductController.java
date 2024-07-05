@@ -36,8 +36,8 @@ public class ProductController {
     }
 
     @PostMapping("/product/new")
-    public String addProduct(@RequestBody Product newProdcut){
-        repo.save(newProdcut);
+    public String addProduct(@RequestBody Product newProduct){
+        repo.save(newProduct);
         return "A new product is added. YEY!";
     }
 
