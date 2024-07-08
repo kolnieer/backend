@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import ProjectBackEnd.backend.NotFoundException.OrderNotFoundException;
+import ProjectBackEnd.backend.NotFoundException.UserNotFoundException;
 
 @RestControllerAdvice
-public class OrderExceptionalHandler {
+public class UserExceptionHandler {
 
-    @ExceptionHandler(OrderNotFoundException.class)
+    @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String OrderNotFoundHandler(OrderNotFoundException e){
+    String userNotFoundHandler(UserNotFoundException e){
         return e.getMessage();
     }
 

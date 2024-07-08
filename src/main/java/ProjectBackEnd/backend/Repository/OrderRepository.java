@@ -1,9 +1,11 @@
 package ProjectBackEnd.backend.Repository;
 
-import org.antlr.v4.runtime.atn.SemanticContext.OR;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OrderRepository {
+import ProjectBackEnd.backend.Model.Order;
+
+public interface OrderRepository extends JpaRepository <Order, Long>{
     
-    OrderRepository repo;
+    
 
 }
