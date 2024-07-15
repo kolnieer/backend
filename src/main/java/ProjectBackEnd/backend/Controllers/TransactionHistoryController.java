@@ -2,21 +2,24 @@ package ProjectBackEnd.backend.Controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ProjectBackEnd.backend.Model.TransactionHistory;
-import ProjectBackEnd.backend.Repository.TransactionRepository;
+import ProjectBackEnd.backend.NotFoundException.TransactionHistoryNotFoundException;
+import ProjectBackEnd.backend.Repository.TransactionHistoryRepository;
 
 @RestController
 public class TransactionHistoryController {
 
-    TransactionHistory repo;
-
-    public TransactionHistoryController(TransactionRepository repo) {
+    TransactionHistoryRepository repo;
+    
+    public TransactionHistoryController(TransactionHistoryRepository repo) {
         this.repo = repo;
     }
 
@@ -25,36 +28,38 @@ public class TransactionHistoryController {
         return repo.findAll();
     }
 
-    @GetMapping("TransactionHistory/new")
-    public TransactionHistory TransactionHistory(@PathVariable long id){
+    @GetMapping("/TransactionHistory/{id}")
+    public TransactionHistory getTransactionHistory(@PathVariable Long id){
         return repo.findById(id)
-        .orElseThrow(()-> new TransactionHistory(id));
-
+        .orElseThrow(()-> new TransactionHistoryNotFoundException(id));
+    
     }
 
-    public String addTransactioString(@PathVariable long id, @RequestBody TransactionHistory newTransactionHistory){
+    @PostMapping("/TransactionHistory/new")
+    public String addProduct(@RequestBody TransactionHistory newTransactionHistory){
         repo.save(newTransactionHistory);
-        return "A new delivery has been added";
+        return "A new transaction history has been added";
     }
 
     @PutMapping("/TransactionHistory/edit/{id}")
-    public TransactionHistory updateTransactionHistory(@PathVariable long id,@RequestBody TransactionHistory newTransactionHistory){
+    public TransactionHistory updateTransactionHistory(@PathVariable Long id, @RequestBody TransactionHistory newTransactionHistory){
         return repo.findById(id)
-        .map(TransactionHistory -> {
-        TransactionHistory.setReserveId(newTransactionHistory.getReserveId());
-        TransactionHistory.setDeliveryId(newTransactionHistory.getDeliveryId());
-        TransactionHistory.setOrderId(newTransactionHistory.getOrderId());
-        return repo.save(TransactionHistory);
-    }).orElseGet(()->{
-        return repo.save(newTransactionHistory);
-    });
-     
-
+        .map(TransactionHistory ->{
+            TransactionHistory.setGetDeliveryId(newTransactionHistory.getGetDeliveryId());
+            TransactionHistory.setGetOrderId(newTransactionHistory.getGetOrderId());
+            TransactionHistory.setGetReserveId(newTransactionHistory.getGetReserveId());
+            return repo.save(newTransactionHistory);
+        }).orElseGet(()->{
+            return repo.save(newTransactionHistory);
+        });
     }
+    
 
-    public String deleteTransactionHistory(@PathVariable long id){
+    @DeleteMapping("/TransactionHistory/delete/{id}")
+    public String deleteTransactionHistory(@PathVariable Long id){
         repo.deleteById(id);
-        return "A Transaction has been cancelled";
+        return "A Transaction has been deleted!";
     }
 
 }
+

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import ProjectBackEnd.backend.Model.TransactionHistory;
+import ProjectBackEnd.backend.NotFoundException.*;
 
 @RestControllerAdvice
 public class TransactionHistoryExceptionHandler {
