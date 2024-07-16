@@ -1,4 +1,4 @@
-package com.nesteaa.backstore.Config;
+package ProjectBackEnd.backend.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
