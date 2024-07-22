@@ -29,7 +29,6 @@ public class Cart {
         {@JoinColumn(name = "cart_Id", referencedColumnName = "cartId")},
         inverseJoinColumns = 
         {@JoinColumn(name = "addOns_Id", referencedColumnName = "addOnsId")})
-    
     private Long userId;
     private int quantity;
     

@@ -14,7 +14,6 @@ import ProjectBackEnd.backend.DTO.CartDTO;
 import ProjectBackEnd.backend.Model.AddOns;
 import ProjectBackEnd.backend.Model.Cart;
 import ProjectBackEnd.backend.Model.Product;
-import ProjectBackEnd.backend.NotFoundException.CartNotFoundException;
 import ProjectBackEnd.backend.Repository.AddonsRepository;
 import ProjectBackEnd.backend.Repository.CartRepository;
 import ProjectBackEnd.backend.Repository.ProductRepository;
@@ -35,9 +34,10 @@ public class CartController {
     @PostMapping("/cart/new") 
     public String addToCart(@RequestBody CartDTO entity){
         Product product = productRepository.findByProductName(entity.getProductName());
-        AddOns addons = addonsRepository.findByAddOnsId(entity.getAddOnsId());
+        AddOns addOns = addonsRepository.findByAddOnsId(entity.getAddOnsId());
         Cart cart = new Cart();
         cart.setProduct(product);
+        cart.setAddOnsId(entity.getAddOnsId());
         cart.setUserId(entity.getUserId());
         cart.setQuantity(entity.getQuantity());
         cartRepository.save(cart);
