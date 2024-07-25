@@ -1,5 +1,7 @@
 package ProjectBackEnd.backend.Model;
 
+import java.util.Set;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,8 +23,8 @@ public class Cart {
         joinColumns = 
         {@JoinColumn(name = "cart_Id", referencedColumnName = "cartId")},
         inverseJoinColumns = 
-        {@JoinColumn(name = "product_id", referencedColumnName = "id")})
-    private Product product;
+        {@JoinColumn(name = "product_name", referencedColumnName = "ProductName")})
+        private Set<Product> product;
 
     @JoinTable(name = "addons_cart",
         joinColumns = 
@@ -46,12 +48,12 @@ public class Cart {
     }
 
 
-    public Product getProduct() {
+    public Set<Product> getProduct() {
         return product;
     }
 
 
-    public void setProduct(Product product) {
+    public void setProduct(Set<Product> product) {
         this.product = product;
     }
 

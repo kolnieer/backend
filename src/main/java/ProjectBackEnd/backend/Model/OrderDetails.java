@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 public class OrderDetails {
 
     private @Id
-    @GeneratedValue Long id;
+    @GeneratedValue Long orderDetailsId;
     private Long orderId;
     private Long productId;
     private String medioSize;
@@ -30,8 +30,8 @@ public class OrderDetails {
         this.quantity = quantity;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long orderDetailsId) {
+        this.orderDetailsId = orderDetailsId;
     }
 
     public void setOrderId(Long orderId) {
@@ -63,7 +63,7 @@ public class OrderDetails {
     }
 
     public Long getId() {
-        return id;
+        return orderDetailsId;
     }
 
     public Long getOrderId() {

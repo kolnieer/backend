@@ -8,46 +8,46 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "order")
+@Table(name = "ordertbl")
 public class Order {
 
     private @Id
-    @GeneratedValue Long id;
+    @GeneratedValue Long orderId;
     private Long userId;
-    private Long reserveId;
-    private Long delieveryId;
+    private Long reservationId;
+    private Long deliveryId;
     private double totalAmount;
     private Date orderDate;
-    private String reserveStatus;
+    private String reservationStatus;
     private String deliveryStatus;
 
     Order(){}
 
-    public Order(Long userId, Long reserveId, Long delieveryId, double totalAmount, Date orderDate,
-            String reserveStatus, String deliveryStatus) {
+    public Order(Long userId, Long reservationId, Long deliveryId, double totalAmount, Date orderDate,
+            String reservationStatus, String deliveryStatus) {
         this.userId = userId;
-        this.reserveId = reserveId;
-        this.delieveryId = delieveryId;
+        this.reservationId = reservationId;
+        this.deliveryId = deliveryId;
         this.totalAmount = totalAmount;
         this.orderDate = orderDate;
-        this.reserveStatus = reserveStatus;
+        this.reservationStatus = reservationStatus;
         this.deliveryStatus = deliveryStatus;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long orderId) {
+        this.orderId = orderId;
     }
 
     public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public void setReserveId(Long reserveId) {
-        this.reserveId = reserveId;
+    public void setReserveId(Long reservationId) {
+        this.reservationId = reservationId;
     }
 
-    public void setDelieveryId(Long delieveryId) {
-        this.delieveryId = delieveryId;
+    public void setDeliveryId(Long deliveryId) {
+        this.deliveryId = deliveryId;
     }
 
     public void setTotalAmount(double totalAmount) {
@@ -58,8 +58,8 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public void setReserveStatus(String reserveStatus) {
-        this.reserveStatus = reserveStatus;
+    public void setReserveStatus(String reservationStatus) {
+        this.reservationStatus = reservationStatus;
     }
 
     public void setDeliveryStatus(String deliveryStatus) {
@@ -67,19 +67,19 @@ public class Order {
     }
 
     public Long getId() {
-        return id;
+        return orderId;
     }
 
     public Long getUserId() {
         return userId;
     }
 
-    public Long getReserveId() {
-        return reserveId;
+    public Long getReservationId() {
+        return reservationId;
     }
 
-    public Long getDelieveryId() {
-        return delieveryId;
+    public Long getDeliveryId() {
+        return deliveryId;
     }
 
     public double getTotalAmount() {
@@ -90,8 +90,8 @@ public class Order {
         return orderDate;
     }
 
-    public String getReserveStatus() {
-        return reserveStatus;
+    public String getReservationStatus() {
+        return reservationStatus;
     }
 
     public String getDeliveryStatus() {

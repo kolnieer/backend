@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 @Entity
 public class AddOns {
 
-    private @Id
+    @Id
     @GeneratedValue Long addOnsId;
     private int pearl;
     private int crystal;

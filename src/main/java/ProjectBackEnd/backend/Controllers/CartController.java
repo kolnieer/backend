@@ -1,5 +1,6 @@
 package ProjectBackEnd.backend.Controllers;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import ProjectBackEnd.backend.Repository.CartRepository;
 import ProjectBackEnd.backend.Repository.ProductRepository;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/cart")
 public class CartController {
 
     @Autowired
@@ -31,13 +32,12 @@ public class CartController {
     @Autowired
     AddonsRepository addonsRepository;
 
-    @PostMapping("/cart/new") 
+    @PostMapping("/new") 
     public String addToCart(@RequestBody CartDTO entity){
         Product product = productRepository.findByProductName(entity.getProductName());
         AddOns addOns = addonsRepository.findByAddOnsId(entity.getAddOnsId());
         Cart cart = new Cart();
-        cart.setProduct(product);
-        cart.setAddOnsId(entity.getAddOnsId());
+        cart.setProduct(Collections.singleton(product));
         cart.setUserId(entity.getUserId());
         cart.setQuantity(entity.getQuantity());
         cartRepository.save(cart);

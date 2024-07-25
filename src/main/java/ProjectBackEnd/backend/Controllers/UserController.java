@@ -23,9 +23,9 @@ import ProjectBackEnd.backend.Repository.RoleRepository;
 import ProjectBackEnd.backend.Repository.UserRepository;
 
 @RestController
-@RequestMapping("api/v1/auth")
+@RequestMapping("/api/v1")
 public class UserController {
-
+    
     @Autowired
     UserRepository userRepository;
 
