@@ -5,31 +5,33 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Delivery {
+public class Reservation {
+
+
 
     @Id
-    @GeneratedValue Long deliveryId;
+    @GeneratedValue Long reservationId;
     private Long productId;
     private long orderId;
 
 
-    Delivery(){}
+    Reservation(){}
 
 
-    public Delivery(Long deliveryId, Long productId, long orderId) {
-        this.deliveryId = deliveryId;
+    public Reservation(Long reservationId, Long productId, long orderId) {
+        this.reservationId = reservationId;
         this.productId = productId;
         this.orderId = orderId;
     }
 
 
     public Long getId() {
-        return deliveryId;
+        return reservationId;
     }
 
 
-    public void setId(Long deliveryId) {
-        this.deliveryId = deliveryId;
+    public void setId(Long reservationId) {
+        this.reservationId = reservationId;
     }
 
 
@@ -51,7 +53,5 @@ public class Delivery {
     public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
-
-    
-
 }
+

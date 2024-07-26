@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ProjectBackEnd.backend.Model.Category;
@@ -15,6 +16,7 @@ import ProjectBackEnd.backend.NotFoundException.CategoryNotFoundException;
 import ProjectBackEnd.backend.Repository.CategoryRepository;
 
 @RestController
+@RequestMapping("/api/v1/category")
 public class CategoryController {
 
     CategoryRepository repo;
@@ -23,24 +25,24 @@ public class CategoryController {
         this.repo = repo;
     }
 
-    @GetMapping("/categories")
+    @GetMapping("/all")
     public List<Category> getCategories(){
         return repo.findAll();
     }
 
-    @GetMapping("/category/{id}")
+    @GetMapping("/{id}")
     public Category gCategory(@PathVariable Long id){
         return repo.findById(id)
         .orElseThrow(()-> new CategoryNotFoundException(id));
     }
 
-    @PostMapping("/category/new")
+    @PostMapping("/new")
     public String addCategory(@RequestBody Category newproductCategory){
         repo.save(newproductCategory);
         return "A new category has been added!";
     }
 
-    @PutMapping("/category/edit/{id}")
+    @PutMapping("/edit/{id}")
     public Category updateCategory(@PathVariable Long id, @RequestBody Category newproductCategory){
         return repo.findById(id)
         .map(category -> {
@@ -51,7 +53,7 @@ public class CategoryController {
         });
     }
 
-    @DeleteMapping("/category/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteproductCategory(@PathVariable Long id){
         repo.deleteById(id);
         return "A category has been deleted";

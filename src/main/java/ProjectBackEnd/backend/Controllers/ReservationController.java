@@ -11,47 +11,49 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ProjectBackEnd.backend.Model.Delivery;
-import ProjectBackEnd.backend.NotFoundException.DeliveryNotFoundException;
-import ProjectBackEnd.backend.Repository.DeliveryRepository;
+import ProjectBackEnd.backend.Model.Reservation;
+import ProjectBackEnd.backend.NotFoundException.ReservationNotFoundException;
+import ProjectBackEnd.backend.Repository.ReservationRepository;
+
+
 
 @RestController
-@RequestMapping("/api/v1/delivery")
-public class DeliveryController {
+@RequestMapping("/api/v1/reservation")
+public class ReservationController {
 
-    DeliveryRepository repo;
+    ReservationRepository repo;
 
-    public DeliveryController(DeliveryRepository repo) {
+    public ReservationController(ReservationRepository repo) {
         this.repo = repo;
     }
 
     @GetMapping("/all")
-    public List<Delivery> getDeliveries(){
+    public List<Reservation> getReservations(){
         return repo.findAll();
     }
 
     @GetMapping("/{id}")
-    public Delivery getDelivery(@PathVariable Long id){
+    public Reservation getReservations(@PathVariable Long id){
         return repo.findById(id)
-        .orElseThrow(()-> new DeliveryNotFoundException(id));
+        .orElseThrow(()-> new ReservationNotFoundException(id));
 
     }
 
     @PostMapping("/new")
-    public String addDelivery(@RequestBody Delivery newDelivery){
-        repo.save(newDelivery);
-        return "A new delivery has been added";
+    public String addReservation(@RequestBody Reservation newReservation){
+        repo.save(newReservation);
+        return "A new reservation has been added";
     }
 
     @PutMapping("/edit/{id}")
-    public Delivery updatDelivery(@PathVariable Long id,@RequestBody Delivery newDelivery){
+    public Reservation updatReservation(@PathVariable Long id,@RequestBody Reservation newReservation){
         return repo.findById(id)
-        .map(delivery -> {
-        delivery.setProductId(newDelivery.getProductId());
-        delivery.setOrderId(newDelivery.getOrderId());
-        return repo.save(delivery);
+        .map(reservation -> {
+        reservation.setProductId(newReservation.getProductId());
+        reservation.setOrderId(newReservation.getOrderId());
+        return repo.save(reservation);
     }).orElseGet(()->{
-        return repo.save(newDelivery);
+        return repo.save(newReservation);
     });
      
 
@@ -64,3 +66,4 @@ public class DeliveryController {
     }
 
 }
+

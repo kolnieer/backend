@@ -7,69 +7,85 @@ import jakarta.persistence.Id;
 @Entity
 public class TransactionHistory {
     private @Id
-    @GeneratedValue Long id;
-    private String getReserveId;
-    private String getDeliveryId;
-    private double getOrderId;
+    @GeneratedValue Long transactionHistoryId;
+    private Long orderId;
+    private Long reservationId;
+    private Long deliveryId;
+    private Long productId;
+    private Long userId;
+    private Long orderDetailsId;
 
 
     TransactionHistory (){}
 
+    public TransactionHistory(Long orderId, Long reservationId, Long deliveryId, Long productId, Long userId,
+            Long orderDetailsId) {
+        this.orderId = orderId;
+        this.reservationId = reservationId;
+        this.deliveryId = deliveryId;
+        this.productId = productId;
+        this.userId = userId;
+        this.orderDetailsId = orderDetailsId;
+    }
 
-    public TransactionHistory(Long id, String getReserveId, String getDeliveryId, double getOrderId) {
-        this.id = id;
-        this.getReserveId = getReserveId;
-        this.getDeliveryId = getDeliveryId;
-        this.getOrderId = getOrderId;
+    public Long getTransactionHistoryId() {
+        return transactionHistoryId;
+    }
+
+    public void setTransactionHistoryId(Long transactionHistoryId) {
+        this.transactionHistoryId = transactionHistoryId;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public Long getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(Long reservationId) {
+        this.reservationId = reservationId;
+    }
+
+    public Long getDeliveryId() {
+        return deliveryId;
+    }
+
+    public void setDeliveryId(Long deliveryId) {
+        this.deliveryId = deliveryId;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getOrderDetailsId() {
+        return orderDetailsId;
+    }
+
+    public void setOrderDetailsId(Long orderDetailsId) {
+        this.orderDetailsId = orderDetailsId;
     }
 
 
-    public Long getId() {
-        return id;
-    }
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-    public String getGetReserveId() {
-        return getReserveId;
-    }
-
-
-    public void setGetReserveId(String getReserveId) {
-        this.getReserveId = getReserveId;
-    }
-
-
-    public String getGetDeliveryId() {
-        return getDeliveryId;
-    }
-
-
-    public void setGetDeliveryId(String getDeliveryId) {
-        this.getDeliveryId = getDeliveryId;
-    }
-
-
-    public double getGetOrderId() {
-        return getOrderId;
-    }
-
-
-    public void setGetOrderId(double getOrderId) {
-        this.getOrderId = getOrderId;
-    }
-
-
-    public Object getDeliveryId() {
-        //TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDeliveryId'");
-    }
 
     
-
 
 }
